@@ -1,3 +1,11 @@
 .background-grey {
-    background: #e5e5e5;
+    background: #E5E5E5;
+}
+
+.background-dark {
+    background: #272B37;
+}
+
+.color-white {
+    color: #FFFFFF;
 }

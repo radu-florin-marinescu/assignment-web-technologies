@@ -18,24 +18,30 @@
 
 <body>
 <div class="page-container background-grey">
-    <table>
-        <thead>
-        <tr>
-            <th style="text-transform:uppercase;">Nr.</th>
-            <th style="text-transform:uppercase;">ID Comanda</th>
-            <th style="text-transform:uppercase;">Client</th>
-            <th style="text-transform:uppercase;">Suma</th>
-            <th style="text-transform:uppercase;">Data</th>
-            <th style="text-transform:uppercase;">Plata</th>
-            <th style="text-transform:uppercase;">Manopera</th>
-            <th style="text-transform:uppercase;">% Manopera</th>
-            <th style="text-transform:uppercase;">Cost manopera</th>
-            <th style="text-transform:uppercase;">Nr. Produse</th>
-            <th style="text-transform:uppercase;">Status</th>
-            <th style="text-transform:uppercase;">Actiuni</th>
-        </tr>
-        </thead>
-    </table>
+    <div class="container-fluid">
+        <div class="row m-t-30">
+            <div class="table-responsive">
+                <table class="table table-style">
+                    <thead class="background-dark color-white">
+                    <tr>
+                        <th>Nr.</th>
+                        <th>ID Comanda</th>
+                        <th>Client</th>
+                        <th>Suma</th>
+                        <th>Data</th>
+                        <th>Plata</th>
+                        <th>Manopera</th>
+                        <th>% Manopera</th>
+                        <th>Cost manopera</th>
+                        <th>Nr. Produse</th>
+                        <th>Status</th>
+                        <th>Actiuni</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 
