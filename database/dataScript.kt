@@ -4,6 +4,10 @@ import java.util.*
 import kotlin.math.round
 import kotlin.random.Random
 
+// Acest script scris in Kotlin (Java modern) genereaza query-uri de INSERT aleatoare pentru a popula tabela de comenzi
+// cu o cantitate semnificativa de date fara a le scrie manual
+
+
 // Constante folosite in codul din accest script
 
 // Capete generare data si ora aleatoare
