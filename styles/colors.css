@@ -1,3 +1,11 @@
+.background-white {
+    background: #FFFFFF;
+}
+
+.background-light-grey{
+    background: #F5F5F5;
+}
+
 .background-grey {
     background: #E5E5E5;
 }
@@ -8,4 +16,8 @@
 
 .color-white {
     color: #FFFFFF;
+}
+
+.color-dark {
+    color: #272B37;
 }
