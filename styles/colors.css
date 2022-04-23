@@ -1,0 +1,23 @@
+.background-white {
+    background: #FFFFFF;
+}
+
+.background-light-grey{
+    background: #F5F5F5;
+}
+
+.background-grey {
+    background: #E5E5E5;
+}
+
+.background-dark {
+    background: #272B37;
+}
+
+.color-white {
+    color: #FFFFFF;
+}
+
+.color-dark {
+    color: #272B37;
+}
