@@ -6,8 +6,8 @@ CREATE TABLE `orders`
     `date`                   datetime                                  NOT NULL,
     `payment`                enum ('cash', 'card')                     NOT NULL,
     `workmanship`            boolean                                   NOT NULL,
-    `workmanship_percentage` decimal(2, 2)                             NOT NULL,
-    `quantity`               int(1000)                                 NOT NULL,
+    `workmanship_percentage` decimal(10, 2)                             NOT NULL,
+    `quantity`               int(10)                                   NOT NULL,
     `status`                 enum ('received',
         'processing', 'sent', 'completed', 'out_of_stock', 'returned') NOT NULL,
     `return_reason`          varchar(4000)
