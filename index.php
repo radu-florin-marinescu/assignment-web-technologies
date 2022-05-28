@@ -40,34 +40,43 @@
                     </tr>
                     </thead>
                     <tbody class="background-white color-dark">
-                    <tr>
-                        <td>1</td>
-                        <td>322579e0-c248-11ec-9d64-0242ac120002</td>
-                        <td>marian.ceargau@yahoo.com</td>
-                        <td>2,489.99 RON</td>
-                        <td>14.04.2022 - 14:55</td>
-                        <td>CARD</td>
-                        <td>DA</td>
-                        <td>15.0%</td>
-                        <td>104.99 RON</td>
-                        <td>12</td>
-                        <td>TRIMIS</td>
-                        <td>---</td>
-                    </tr>
-                    <tr class="background-light-grey">
-                        <td>2</td>
-                        <td>322579e0-c248-11ec-9d64-0242ac120002</td>
-                        <td>radu.marinescu.florin.testmail@mail.com</td>
-                        <td>14.99 RON</td>
-                        <td>17.04.2022 - 18:30</td>
-                        <td>CASH</td>
-                        <td>NU</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>PRIMIT</td>
-                        <td class="last">---</td>
-                    </tr>
+                    <?php
+                    include 'database/connection.php';
+                    require 'functions/functions.php';
+
+                    $query = "SELECT * FROM orders";
+                    $result = mysqli_query($connection, $query);
+                    $count = mysqli_num_rows($result);
+
+                    if ($count > 0) {
+                        $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                        $index = 1;
+                        foreach ($orders as $current) {
+                            $status = $current["status"];
+                            $statusColor = getStatusColorByEnumType($status);
+                            $statusText = getStatusNameByEnumType($status);
+                            $rowBackground = ($index % 2 == 0) ? "background-light-grey" : "background-white";
+                            ?>
+                            <tr class="<?= $rowBackground ?>">
+                                <td><?= $index ?></td>
+                                <td><?= $current["id"] ?></td>
+                                <td><?= $current["client"] ?></td>
+                                <td><?= $current["total"] ?> RON</td>
+                                <td><?= $current["date"] ?></td>
+                                <td><?= $current["payment"] ?></td>
+                                <td><?= $current["workmanship"] ?></td>
+                                <td><?= $current["workmanship_percentage"] ?>%</td>
+                                <td>0 RON</td>
+                                <td><?= $current["quantity"] ?></td>
+                                <td class="<?= $statusColor ?>"><?= $statusText ?></td>
+                                <td><?= $current["return_reason"] ?></td>
+                                <td></td>
+                            </tr>
+                            <?php
+                            $index = $index + 1;
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
