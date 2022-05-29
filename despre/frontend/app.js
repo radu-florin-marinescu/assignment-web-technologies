@@ -1,7 +1,9 @@
 function INFO(e) {
-  const title = "Dinu Eugen Cosmin";
-  const content =
-    "Student UTM - Informatică, anul II.<br> Temă - Proiect la TEHNOLOGII WEB.";
+  const title = "Proiect Aplicație Web";
+  const content = `UTM - Informatică, anul II.<br>
+    Temă - Proiect la TEHNOLOGII WEB.<br>
+    Sudenți: ..., ..., ...
+    `;
   const onClose = (e) => console.log("Closed!");
   const aboutMe = new Page(title, content, onClose);
   main.appendChild(aboutMe.createElement());
