@@ -1,3 +1,8 @@
+<?php
+include 'database/connection.php';
+require 'functions/functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +22,28 @@
     <title>TableView</title>
 </head>
 
-<body>
-<div class="page-container background-grey">
+<body class="background-grey">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" style='margin-left: 50px' href="#">Proiect</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.php">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addData.php">Add New</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="page-container">
     <div class="container-fluid">
         <div class="row m-t-30">
             <div class="table-responsive">
@@ -36,38 +61,51 @@
                         <th>Cost manopera</th>
                         <th>Nr. Produse</th>
                         <th>Status</th>
+                        <!--                        <th>Motiv retur-->
                         <th>Actiuni</th>
                     </tr>
                     </thead>
                     <tbody class="background-white color-dark">
-                    <tr>
-                        <td>1</td>
-                        <td>322579e0-c248-11ec-9d64-0242ac120002</td>
-                        <td>marian.ceargau@yahoo.com</td>
-                        <td>2,489.99 RON</td>
-                        <td>14.04.2022 - 14:55</td>
-                        <td>CARD</td>
-                        <td>DA</td>
-                        <td>15.0%</td>
-                        <td>104.99 RON</td>
-                        <td>12</td>
-                        <td>TRIMIS</td>
-                        <td>---</td>
-                    </tr>
-                    <tr class="background-light-grey">
-                        <td>2</td>
-                        <td>322579e0-c248-11ec-9d64-0242ac120002</td>
-                        <td>radu.marinescu.florin.testmail@mail.com</td>
-                        <td>14.99 RON</td>
-                        <td>17.04.2022 - 18:30</td>
-                        <td>CASH</td>
-                        <td>NU</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>PRIMIT</td>
-                        <td class="last">---</td>
-                    </tr>
+                    <?php
+
+                    $query = "SELECT * FROM orders";
+                    $result = mysqli_query($connection, $query);
+                    $count = mysqli_num_rows($result);
+
+                    if ($count > 0) {
+                        $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                        $index = 1;
+                        $root = null;
+                        foreach ($orders as $current) {
+                            $status = $current["status"];
+                            $statusColor = getStatusColorByEnumType($status);
+                            $statusText = getStatusNameByEnumType($status);
+                            $rowBackground = ($index % 2 == 0) ? "background-light-grey" : "background-white";
+                            ?>
+                            <tr class="<?= $rowBackground ?>">
+                                <td><?= $index ?></td>
+                                <td><?= $current["id"] ?></td>
+                                <td><?= $current["client"] ?></td>
+                                <td><?= $current["total"] ?> RON</td>
+                                <td><?= $current["date"] ?></td>
+                                <td><?= $current["payment"] ?></td>
+                                <td><?= $current["workmanship"] ?></td>
+                                <td><?= $current["workmanship_percentage"] ?>%</td>
+                                <td>0 RON</td>
+                                <td><?= $current["quantity"] ?></td>
+
+                                <td class="<?= $statusColor ?>"><?= $statusText ?></td>
+                                <!--                                <td>-->
+                                <?//= $current["return_reason"] ?><!--</td>-->
+                                <td><?php echo "<a href='./delete.php?id=" . $current['id'] . "'>Delete</a>" ?></td>
+
+                                <td></td>
+                            </tr>
+                            <?php
+                            $index = $index + 1;
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
