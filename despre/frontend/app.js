@@ -2,7 +2,7 @@ function INFO(e) {
   const title = "Proiect Aplicație Web";
   const content = `UTM - Informatică, anul II.<br>
     Temă - Proiect la TEHNOLOGII WEB.<br>
-    Sudenți: ..., ..., ...
+    Sudent: Dinu Eugen Cosmin
     `;
   const onClose = (e) => console.log("Closed!");
   const aboutMe = new Page(title, content, onClose);

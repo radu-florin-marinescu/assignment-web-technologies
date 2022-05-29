@@ -23,7 +23,7 @@ if ($count > 0) {
     "index":<?= $index ?>,
     "currentId":"<?= $current["id"] ?>",
     "clientEmail":"<?= $current["client"] ?>",
-    "totalRon":<?= $current["total"] ?>,
+    "total":<?= $current["total"] ?>,
     "date":"<?= $current["date"] ?>",
     "paymentType":"<?= $current["payment"] ?>",
     "current":"<?= $current["workmanship"] ?>",
