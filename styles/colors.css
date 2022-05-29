@@ -14,8 +14,12 @@
     background: #272B37;
 }
 
+.background-marine {
+    background: rgb(64, 166, 157) !important;
+}
+
 .color-white {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 .color-dark {

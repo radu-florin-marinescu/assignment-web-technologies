@@ -1,3 +1,8 @@
+<?php
+include 'database/connection.php';
+require 'functions/functions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +22,28 @@
     <title>TableView</title>
 </head>
 
-<body>
-<div class="page-container background-grey">
+<body class="background-grey">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" style='margin-left: 50px' href="#">Proiect</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="dashboard.php">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="index.php">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="addData.php">Add New</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="page-container">
     <div class="container-fluid">
         <div class="row m-t-30">
             <div class="table-responsive">
@@ -36,13 +61,12 @@
                         <th>Cost manopera</th>
                         <th>Nr. Produse</th>
                         <th>Status</th>
+                        <!--                        <th>Motiv retur-->
                         <th>Actiuni</th>
                     </tr>
                     </thead>
                     <tbody class="background-white color-dark">
                     <?php
-                    include 'database/connection.php';
-                    require 'functions/functions.php';
 
                     $query = "SELECT * FROM orders";
                     $result = mysqli_query($connection, $query);
@@ -51,6 +75,7 @@
                     if ($count > 0) {
                         $orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         $index = 1;
+                        $root = null;
                         foreach ($orders as $current) {
                             $status = $current["status"];
                             $statusColor = getStatusColorByEnumType($status);
@@ -68,8 +93,12 @@
                                 <td><?= $current["workmanship_percentage"] ?>%</td>
                                 <td>0 RON</td>
                                 <td><?= $current["quantity"] ?></td>
+
                                 <td class="<?= $statusColor ?>"><?= $statusText ?></td>
-                                <td><?= $current["return_reason"] ?></td>
+                                <!--                                <td>-->
+                                <?//= $current["return_reason"] ?><!--</td>-->
+                                <td><?php echo "<a href='./delete.php?id=" . $current['id'] . "'>Delete</a>" ?></td>
+
                                 <td></td>
                             </tr>
                             <?php
